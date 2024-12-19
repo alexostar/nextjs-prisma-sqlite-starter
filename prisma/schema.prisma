@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// THIS IS FOR DEPLOYMENT
+// datasource db {
+//  provider  = "postgresql"
+//  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+//  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+// }
+
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model EventoEvent {
+  id            Int      @id @default(autoincrement())
+  name          String
+  slug          String   @unique
+  city          String
+  location      String
+  date          DateTime
+  organizerName String
+  imageUrl      String
+  description   String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ecosystem {
+  id            Int      @id @default(autoincrement())
+  id2           Int
+  title         String
+  status        String 
+  content       String
+  slug          String  @unique
+  createdAt     DateTime @default(now())
+}
